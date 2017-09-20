@@ -1,0 +1,27 @@
+{
+    "name": "honey-git-flow",
+    "description": "A new git flow with hooks for waffle.io. And now you have a Waffle with honey.",
+    "author": "Ricardo Junior <eu@ricardojunior.com.br>",
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=5.12.0"
+    },
+    "bin": {
+        "honey-git-flow": "./index.js"
+    },
+    "scripts": {
+        "commitmsg": "node gitValidations.js commit",
+        "prerebase": "node gitValidations.js rebase"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RicardoJunior/honey-git-flow.git"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "comander": "^2.11.2",
+        "husky": "^0.11.6"
+    },
+    "license": "MIT"
+}

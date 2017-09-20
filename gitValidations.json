@@ -1,0 +1,11 @@
+{
+    "branchMasters": [
+        "master",
+        "develop"
+    ],
+    "branchNames": [
+        "feature/#ID_ISSUE/shortest_description",
+        "fix/#ID_ISSUE/shortest_description"
+    ],
+    "commitMessage": "issue #ID_ISSUE | Clear and informative description"
+}

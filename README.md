@@ -28,12 +28,12 @@ CommitMessage: It's a template of your commit pattern.
 ### Pre-commmit
 Add in scripts of your package.json
 ```
-"commitmsg": "node gitValidations.js commit"
+"commitmsg": "honey-commit"
 ````
 
 ### Rebase Blocker (Its a extra)
 ```
-"prerebase": "node gitValidations.js rebase"
+"prerebase": "honey-rebase"
 ````
 
 ## Usage

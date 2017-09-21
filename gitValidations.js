@@ -99,11 +99,12 @@ function validateBranchName() {
     }
 
     let indexIssue;
-    const message = branchName.split('/')[indexIssue];
 
     if (config.branchNames[i]) {
-      indexIssue = config.branchNames[i].split('/').indexOf('#ID_ISSUE')
+      indexIssue = config.branchNames[i].split('/').indexOf('#ID_ISSUE');
     }
+
+    const message = branchName.split('/')[indexIssue];
 
     if (indexIssue < 0) {
         error('Invalid branch name! Illegal issue number.');

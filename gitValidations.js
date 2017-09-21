@@ -28,7 +28,7 @@ function success(local) {
 
 function loadConfiguration () {
     try {
-        return JSON.parse(fs.readFileSync('gitValidations.json'));
+        return JSON.parse(fs.readFileSync('./gitValidations.json'));
     }
     catch (exception) {
         console.log(exception);
@@ -98,8 +98,12 @@ function validateBranchName() {
         }
     }
 
-    const indexIssue = config.branchNames[i].split('/').indexOf('#ID_ISSUE');
+    let indexIssue;
     const message = branchName.split('/')[indexIssue];
+
+    if (config.branchNames[i]) {
+      indexIssue = config.branchNames[i].split('/').indexOf('#ID_ISSUE')
+    }
 
     if (indexIssue < 0) {
         error('Invalid branch name! Illegal issue number.');
@@ -141,6 +145,10 @@ function hasToString(x) {
     return x && typeof x.toString === 'function';
 }
 
+if (!config) {
+  errorMessage("The config isn't loaded");
+  return;
+}
 
 if (process.argv && process.argv.length >= 3) {
     switch (process.argv[2]) {

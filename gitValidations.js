@@ -112,7 +112,7 @@ function validateBranchName() {
     } else if (branchName.indexOf('/#') < 0) {
         error('Invalid branch name! Missing "#" in branch name.');
         return false;
-    } else if (message[indexIssue].replace('#', '').match(/^\d+$/)) {
+    } else if (message[indexIssue] && message[indexIssue].replace('#', '').match(/^\d+$/)) {
         success('branch');
         return true;
     } else {

@@ -18,7 +18,6 @@
         "url": "https://github.com/RicardoJunior/honey-git-flow.git"
     },
     "dependencies": {
-        "comander": "^2.11.2",
         "husky": "^0.11.6"
     },
     "devDependencies": {

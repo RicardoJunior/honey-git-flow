@@ -28,13 +28,15 @@ CommitMessage: It's a template of your commit pattern.
 ### Pre-commmit
 Add in scripts of your package.json
 ```
-"commitmsg": "honey-commit"
+"commitmsg": "node node_modules/honey-git-flow/gitValidations.js commit"
 ````
 
 ### Rebase Blocker (Its a extra)
 ```
-"prerebase": "honey-rebase"
+"prerebase": "node node_modules/honey-git-flow/gitValidations.js rebase"
 ````
+
+*** We have a issue #3 to create a CLI to trigger this in another way ***
 
 ## Usage
 
@@ -54,3 +56,7 @@ test/#000/test-feature
 ```
 closes #000 | test message lalalalal
 ```
+
+### Common problems
+If your ghooks not triggered, you need to delete **.git/hooks**.
+And re-install the ghooks of husky using *$ node node_modules/husky/bin/install.js*

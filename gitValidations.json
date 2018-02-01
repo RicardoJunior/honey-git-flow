@@ -7,5 +7,29 @@
         "feature/#ID_ISSUE/shortest_description",
         "fix/#ID_ISSUE/shortest_description"
     ],
-    "commitMessage": "issue #ID_ISSUE | Clear and informative description"
+    "commit": {
+        "pattern": "<type>(<scope>): <subject>",
+        "rules": [
+            {
+                "type": "regex",
+                "rule": "feature|fix|refactor|test|chore",
+                "message": "Missing commit (feature, fix, refactor, test or chore)."
+            },
+            {
+                "type": "regex",
+                "name": "scope",
+                "rule": "\\([a-zA-Z|\\s]+\\)",
+                "message": "Missing commit scope"
+            },
+            {
+                "rule": ":",
+                "message": "Missing colon (:)"
+            },
+            {
+                "type": "regex",
+                "rule": ": [a-zA-Z|\\s]+",
+                "message": "Missing subject, you need add some message."
+            }
+        ]
+    }
 }

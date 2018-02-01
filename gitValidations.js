@@ -45,36 +45,35 @@ function getCurrentBranch () {
     return branch.toString().split('\n')[0].replace('refs/heads/', '').toLowerCase();
 }
 
-function validateCommitMessage(message) {
-    if (message === '') {
+function validateCommitMessage(commitMsg) {
+    if (commitMsg === '') {
         error('Empty commit message');
         return false;
     }
-    else if (message.toString().substring(0, 7) !== 'issue #') {
-        error(`Commit message does not follow [${config.commitMessage}]. Start your commit with "issue #".`);
-        return false;
-    }
-    else if (message.toString().indexOf('|') <= 0) {
-        error(`Commit message does not follow [${config.commitMessage}]. Missing pipe.`);
-        return false;
-    }
-    else if (message.toString().indexOf(' | ') <= 0) {
-        error(`Commit message does not follow [${config.commitMessage}]. Missing spaces between pipe.`);
-        return false;
-    }
-    else {
-        let number = message.toString().split(' | ')[0].replace('issue #', '');
 
-        if (number.match(/^\d+$/)) {
-            success('commit');
-            return true;
-        }
-        else {
-            error('Commit message does not follow [${config.commitMessage}]. Illegal issue number.');
-            return false;
+    let valid = true;
+    let msgResult = 'commit message';
+    const { pattern, rules } = config.commit;
+
+    for (let i = 0, len = rules.length; i < len; i++) {
+        const { type, message, rule } = rules[i];
+
+        if (type === 'regex' && !commitMsg.match(rule) || (!type && commitMsg.indexOf(rule) === -1)) {
+            msgResult = `${message} You need apply some like that ${pattern}.`;
+            valid = false;
+            break;
         }
     }
+
+    if (valid) {
+        success(msgResult);
+    } else {
+        error(msgResult);
+    }
+
+    return valid;
 }
+
 
 function validateBranchName() {
     const branchName = getCurrentBranch();
@@ -133,7 +132,7 @@ function validate(raw) {
     let returns = validateBranchName(raw);
 
     if (returns) {
-        returns = validateCommitMessage(raw);
+        returns = validateCommitMessage(raw.replace(/\n/g, ''));
         finalProccess();
     }
     else {

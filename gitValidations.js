@@ -160,8 +160,6 @@ if (process.argv && process.argv.length >= 3) {
         case "commit": {
             let messageFile = path.resolve(process.cwd(), '.git/COMMIT_EDITMSG');
 
-            console.log(messageFile);
-
             fs.readFile(messageFile, (err, buffer) => {
                 function getCommitMessage(buffer) {
                     return hasToString(buffer) && buffer.toString();
